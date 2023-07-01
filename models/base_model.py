@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """creating a base model"""
 
-import datetime
+from datetime import datetime
 import uuid
 
 class BaseModel:
@@ -13,9 +13,16 @@ class BaseModel:
         created_at: str -- time when an instance is created
         updated_at: str -- set to present date when the save function is called
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    if key in ['created_at', 'updated_at']:
+                        value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                     setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """print every class and instances in dict form"""
