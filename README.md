@@ -1,2 +1,1 @@
-# AirBnB_clone
-A big project
+0x00. AirBnB clone - The console
