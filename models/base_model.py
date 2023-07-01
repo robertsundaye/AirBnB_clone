@@ -6,7 +6,7 @@ import uuid
 
 class BaseModel:
     """Parent class"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Arg:
         id: str -- contain unique string using uuid4()
